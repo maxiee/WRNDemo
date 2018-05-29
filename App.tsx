@@ -92,11 +92,16 @@ class HomePage extends Component<Props, State> {
 	}
 }
 
-const RootStack = StackNavigator({
-	Home: {
-		screen: HomePage
+const RootStack = StackNavigator(
+	{
+		Home: {
+			screen: HomePage
+		},
+	},
+	{
+		initialRouteName: 'Home'
 	}
-});
+);
 
 export default class App extends React.Component {
 	render() {
