@@ -16,6 +16,7 @@ import {
 import * as rssParser from 'react-native-rss-parser';
 import HTML from 'react-native-render-html';
 import { Styles } from './src/ui/style';
+import {StackNavigator} from 'react-navigation';
 
 const instructions = Platform.select({
 	ios: 'Press Cmd+R to reload,\n' +
@@ -43,7 +44,7 @@ const GridButton = (props: GridButtonProps) => {
 	)
 }
 
-export default class App extends Component<Props, State> {
+class HomePage extends Component<Props, State> {
 	constructor(props: Props) {
 		super(props);
 		this.state = {
@@ -88,6 +89,18 @@ export default class App extends Component<Props, State> {
 				</View>
 			</View>
 		);
+	}
+}
+
+const RootStack = StackNavigator({
+	Home: {
+		screen: HomePage
+	}
+});
+
+export default class App extends React.Component {
+	render() {
+		return <RootStack />
 	}
 }
 
