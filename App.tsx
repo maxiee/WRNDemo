@@ -11,12 +11,16 @@ import {
 	StyleSheet,
 	Text,
 	View,
-	ScrollView
+	ScrollView,
+	requireNativeComponent,
+	ViewPropTypes
 } from 'react-native';
 import * as rssParser from 'react-native-rss-parser';
 import HTML from 'react-native-render-html';
 import { Styles } from './src/ui/style';
 import {StackNavigator} from 'react-navigation';
+import PropTypes from 'prop-types';
+import { ViewProps } from 'react-native';
 
 const instructions = Platform.select({
 	ios: 'Press Cmd+R to reload,\n' +
@@ -43,6 +47,29 @@ const GridButton = (props: GridButtonProps) => {
 		</View>
 	)
 }
+
+interface MyCoolViewProps extends ViewProps {
+	coolText?: string,
+}
+
+class MyCoolViewComp extends React.Component<MyCoolViewProps> {
+	static propTypes: MyCoolViewProps = {
+		coolText: "aa"
+	}
+}
+
+const MyCoolView = requireNativeComponent("MyCoolView", MyCoolViewComp, {
+	nativeOnly: {
+		'nativeID': true,
+        'accessibilityComponentType': true,
+        'onLayout': true,
+        'testID': true,
+        'importantForAccessibility': true,
+        'accessibilityLiveRegion': true,
+        'accessibilityLabel': true,
+        'renderToHardwareTextureAndroid': true
+	}
+})
 
 class HomePage extends Component<Props, State> {
 	constructor(props: Props) {
@@ -87,6 +114,8 @@ class HomePage extends Component<Props, State> {
 					<GridButton title="刷微博" icon="微博" background="gold"/>
 					<GridButton title="刷微博" icon="微博" background="gold"/>
 				</View>
+				<Text style={Styles.h1}>CoolText</Text>
+				<MyCoolView coolText="Cooooool!" style={{height: 100}}/>
 			</View>
 		);
 	}
