@@ -115,7 +115,9 @@ class HomePage extends Component<Props, State> {
 					<GridButton title="刷微博" icon="微博" background="gold"/>
 				</View>
 				<Text style={Styles.h1}>CoolText</Text>
-				<MyCoolView coolText="Cooooool!" style={{height: 100}}/>
+				<MyCoolView coolText="Cooooool!" />
+				<MyCoolView coolText="Cooooool!" />
+				<MyCoolView coolText="Cooooool!" />
 			</View>
 		);
 	}
